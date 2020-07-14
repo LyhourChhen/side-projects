@@ -1,7 +1,15 @@
 package com.lyhourchhen.blogApi.model
 
+import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.DBRef
+
 class User(
-        var name: String? = null,
-        var phoneNumber: String? = null,
-        var email: String? = null
+        @Id
+        val id: String? = null,
+        val name: String? = null,
+        val phoneNumber: String? = null,
+        val email: String? = null,
+        @DBRef
+        val Blogs: List<Blog>? = null
+
 )

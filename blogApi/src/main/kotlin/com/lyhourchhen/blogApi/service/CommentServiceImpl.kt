@@ -1,6 +1,7 @@
 package com.lyhourchhen.blogApi.service
 
 import com.lyhourchhen.blogApi.model.Comment
+
 import com.lyhourchhen.blogApi.repository.BaseRepository
 import com.lyhourchhen.blogApi.repository.CommentRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -14,4 +15,6 @@ class CommentServiceImpl @Autowired constructor(
     override fun getRepository(): BaseRepository<Comment, String> {
         return commentRepository
     }
+
+
 }
