@@ -1,11 +1,11 @@
 package com.lyhourchhen.blogApi.rest
 
+import com.lyhourchhen.blogApi.model.Blog
 import com.lyhourchhen.blogApi.service.BlogService
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 
 @RestController
@@ -17,5 +17,23 @@ class BlogRest @Autowired constructor(
     fun getAllBlog(): ResponseEntity<Any?> {
         val data = blogService.getAll()
         return base(data)
+    }
+
+    @PostMapping
+    fun createBlog(@RequestBody body: Blog): ResponseEntity<Any?> {
+        val data = blogService.create(body)
+        return base(data, HttpStatus.CREATED)
+    }
+
+    @DeleteMapping("/{id}")
+    fun deleteBlog(@PathVariable id: String): ResponseEntity<Any?>{
+        blogService.delete(id)
+        return base("Delete Successfully")
+    }
+
+    @PutMapping("/{id}")
+    fun editBlog(@PathVariable id: String, @RequestBody body: Blog): ResponseEntity<Any?>{
+        val data = blogService.update(id,body)
+        return base(data, HttpStatus.CREATED)
     }
 }
