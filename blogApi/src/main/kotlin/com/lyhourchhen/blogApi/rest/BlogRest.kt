@@ -19,19 +19,24 @@ class BlogRest @Autowired constructor(
         return base(data)
     }
 
+    @GetMapping("/{id}")
+    fun getBlogById(@RequestBody id:String): ResponseEntity<Any?>{
+        val data = blogService.getOne(id)
+        return base(data,HttpStatus.OK)
+    }
     @PostMapping
     fun createBlog(@RequestBody body: Blog): ResponseEntity<Any?> {
         val data = blogService.create(body)
         return base(data, HttpStatus.CREATED)
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("delete/{id}")
     fun deleteBlog(@PathVariable id: String): ResponseEntity<Any?>{
         blogService.delete(id)
         return base("Delete Successfully")
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("update/{id}")
     fun editBlog(@PathVariable id: String, @RequestBody body: Blog): ResponseEntity<Any?>{
         val data = blogService.update(id,body)
         return base(data, HttpStatus.CREATED)
