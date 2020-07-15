@@ -5,4 +5,6 @@ import org.springframework.stereotype.Repository
 
 
 @Repository
-interface BlogRepository : BaseRepository<Blog,String>
+interface BlogRepository : BaseRepository<Blog,String> {
+    fun findAllByAuthorId(authorId: String): List<Blog>
+}

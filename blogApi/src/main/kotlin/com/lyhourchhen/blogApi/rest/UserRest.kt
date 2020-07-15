@@ -19,7 +19,7 @@ class UserRest @Autowired constructor(
     }
 
     @GetMapping("/{id}")
-    fun getUserById(@RequestBody id:String): ResponseEntity<Any?>{
+    fun getUserById(@PathVariable id:String): ResponseEntity<Any?>{
         val data = userServices.getOne(id)
         return base(data, HttpStatus.OK)
     }
