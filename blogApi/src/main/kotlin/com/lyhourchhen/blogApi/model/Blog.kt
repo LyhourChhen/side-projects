@@ -2,12 +2,18 @@ package com.lyhourchhen.blogApi.model
 
 import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.DBRef
+import org.springframework.data.mongodb.core.mapping.Document
+import java.io.Serializable
 
+
+@Document(collection = "blog")
 class Blog (
-        @Id
-        val id: String? = null,
-        val title: String? = null,
-        val body: String? = null,
-        @DBRef
-        val author: User? = null
-)
+        @field:Id
+        var id: String? = null,
+        var title: String? = null,
+        var body: String? = null,
+        @field:DBRef
+        var author: User? = null
+) : Serializable {
+
+}

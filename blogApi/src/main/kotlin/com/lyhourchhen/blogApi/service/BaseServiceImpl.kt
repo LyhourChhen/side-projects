@@ -18,7 +18,7 @@ abstract class BaseServiceImpl<T, ID : Serializable> : BaseService<T, ID> {
     }
 
     override fun getOne(id: ID): T? {
-        return getOne(id)
+        return getRepository().findById(id).orElse(null)
     }
 
     override fun update(id: ID, entity: T): T? {
